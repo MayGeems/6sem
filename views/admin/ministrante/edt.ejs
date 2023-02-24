@@ -1,0 +1,48 @@
+<%- include('../cabecalho') -%>
+<div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header"><strong>Admin</strong></div>
+                    <div class="card-body">
+                        <div class="example">
+                            <div class="tab-content rounded-bottom">
+                                <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-739">
+                                    <form method="post" enctype="multipart/form-data">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput">Id</label>
+                                            <input class="form-control" readonly name="id" id="exampleFormControlInput" type="text" value="<%=Ministrante.id%>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput1">Nome</label>
+                                            <input class="form-control" name="nome" id="exampleFormControlInput1" type="text"
+                                                placeholder="Digite o nome do Ministrante" value="<%=Ministrante.nome%>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput2">E-mail</label>
+                                            <input class="form-control" name="email" id="exampleFormControlInput2" type="text"
+                                                placeholder="Digite o e-mail do Ministrante" value="<%=Ministrante.email%>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput2">Formação</label>
+                                            <input class="form-control" name="formacao" id="exampleFormControlInput2" type="text"
+                                                placeholder="Digite a formação técnica do ministrante" value="<%=Ministrante.formacao%>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="formFile">Foto de perfil</label>
+                                            <input class="form-control" name="fotoperfil" id="formFile" type="file">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Editar</button>
+                                        <button typr="reset" class="btn btn-light">Limpar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../rodape') -%>
