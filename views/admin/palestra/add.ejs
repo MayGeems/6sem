@@ -13,27 +13,31 @@
                                         <div class = "mb-3">
                                             <label class = "form-label" for="exampleFormControlInput1">Título</label>
                                             <input class="form-control" name="titulo" id="exampleFormControlInput1" type="text"
-                                                placeholder="Digite o título da noticia">
+                                                placeholder="Digite o título da notícia!">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label" for="exampleFormControlInput2">Notícia</label>
-                                            <input class="form-control" name="noticia" id="exampleFormControlInput2" type="text"
-                                                placeholder="Digite a notícia"> 
+                                            <label class="form-label" for="exampleFormControlInput2">Resumo</label>
+                                            <input class="form-control" name="resumo" id="exampleFormControlInput2" type="text"
+                                                placeholder="Digite o resumo da palestra"> 
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="exampleFormControlInput5">Data</label>
                                             <input class="form-control" name="data" id="exampleFormControlInput5" type="date"
-                                                placeholder="Digite a data de postagem da notícia">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="formFile">Foto</label>
-                                            <input class="form-control" name="foto" id="formFile" type="file">
+                                                placeholder="Digite a data da palestra">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="exampleFormControlInput4">Evento</label>
                                             <select class="form-control" name="eventoId">
                                                 <%Eventos.forEach(function(evento){%>
                                                     <option value="<%=evento.id%"><%evento.nome%></option>
+                                                <%})%>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput4">Ministrantes</label>
+                                            <select multiple class="form-control" name="ministranteId">
+                                                <%Ministrantes.forEach(function(ministrante) {%>
+                                                    <option value="<%=ministrante.id%>"><%=ministrante.nome%></option>
                                                 <%})%>
                                             </select>
                                         </div>

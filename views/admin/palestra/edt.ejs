@@ -1,0 +1,55 @@
+<%- include('../cabecalho') -%>
+<div class="body flex-grow-1 px-3">
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header"><strong>Admin</strong></div>
+                    <div class="card-body">
+                        <div class="example">
+                            <div class="tab-content rounded-bottom">
+                                <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-739">
+                                    <form method="post" enctype="multipart/form-data">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput">Id</label>
+                                            <input class="form-control" readonly name="id" id="exampleFormControlInput" type="text" value="<%=Palestra.id%>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput1">Título</label>
+                                            <input class="form-control" name="titulo" id="exampleFormControlInput1" type="text"
+                                                placeholder="Digite o título da notícia" value="<%=Palestra.titulo%>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput2">Notícia</label>
+                                            <input class="form-control" name="resumo" id="exampleFormControlInput2" type="text"
+                                                placeholder="Digite o resumo da palestra" value="<%=Palestra.resumo%>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput5">Data</label>
+                                            <input class="form-control" name="data" id="exampleFormControlInput5" type="text"
+                                                placeholder="Digite a data" value="<%=moment(Palestra.data).format('YYYY-MM-DD')%>">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput4">Ministrantes</label>
+                                            <select multiple class="form-control" name="ministranteId">
+                                                <%Ministrantes.forEach(ministrante => {%>
+                                                    <%let selected = '';%>
+                                                    <%Palestra.ministrantes.forEach(ministrantePalestra => {%>
+                                                        <%if (ministrante.id === ministrantePalestra.id) {selected = 'selected';}%>
+                                                    <%});%>
+                                                    <option value="<%=ministrante.id%>" <%= selected %>><%=ministrante.nome%></option>
+                                            </select>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Editar</button>
+                                        <button typr="reset" class="btn btn-light">Limpar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../rodape') -%>

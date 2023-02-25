@@ -22,7 +22,7 @@ async function filtro(req, res) {
 async function abreadd(req, res) {
     const ministrantes = await models.Ministrante.findAll({})
     const eventos = await models.Evento.findAll({})
-    res.render("admin/oficina/add", {Eventos:eventos, Ministrantes:ministrantes});
+    res.render("admin/oficina/add", {Eventos:eventos, Ministrantes:min});
 }
 //função que adiciona
 async function add(req, res) {
