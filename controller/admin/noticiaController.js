@@ -5,7 +5,7 @@ const Noticias = models.Noticia;
 //função que lista todos ítens
 async function lst(req, res) {
     const noticias = await Noticia.findAll();
-    res.render("admin/noticia/lst", {Noticias: noticias});
+    res.render("admin/noticia/lst", {Logado:req.user, Noticias: noticias});
 }
 //função que lista todos ítens de acordo com pesquisa
 async function filtro(req, res) {
@@ -16,12 +16,12 @@ async function filtro(req, res) {
             }
         }
     });
-    res.render("admin/noticia/lst", {Noticias: noticias});
+    res.render("admin/noticia/lst", {Logado:req.user, Noticias: noticias});
 }
 //função que abre a tela de add
 async function abreadd(req, res) {
     const eventos = await models.Evento.findAll({});
-    res.render("admin/noticia/add", {Eventos:eventos});
+    res.render("admin/noticia/add", {Logado:req.user, Eventos:eventos});
 }
 //função que adiciona
 async function add(req, res) {
@@ -38,7 +38,7 @@ async function add(req, res) {
 async function abreedt(req, res) {
     const eventos = await models.Evento.findAll({});
     const noticia = await Noticia.findByPk(req.params.id);
-    res.render("admin/noticia/edt", {Noticia:noticia, Eventos:eventos});
+    res.render("admin/noticia/edt", {Logado:req.user, Noticia:noticia, Eventos:eventos});
 }
 //função que edita
 async function edt(req, res) {

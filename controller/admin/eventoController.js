@@ -16,14 +16,15 @@ async function filtro(req, res) {
             }
         }
     });
-    res.render("admin/evento/lst", {Eventos: eventos});
+    res.render("admin/evento/lst", {Logado:req.user, Eventos: eventos});
 }
 //função que abre a tela de add
 async function abreadd(req, res) {
-    res.render("admin/evento/add");
+    res.render("admin/evento/add", {Logado:req.user});
 }
 //função que adiciona
 async function add(req, res) {
+    console.log(req.files.logo[0].filename);
     const evento = await Evento.create({
         nome: req.body.nome,
         frase: req.body.frase,
@@ -40,7 +41,7 @@ async function add(req, res) {
 //função que abre tela de edt
 async function abreedt(req, res) {
     const evento = await Evento.findByPk(req.params.id);
-    res.render("admin/evento/edt", {Evento:evento});
+    res.render("admin/evento/edt", {Logado:req.user, Evento:evento});
 }
 //função que edita
 async function edt(req, res) {
@@ -52,9 +53,9 @@ async function edt(req, res) {
         local: req.body.local,
         datainicio: req.body.datainicio,
         datafim: req.body.datafim,
-        logo: req.files['logo'].filename,
-        banner: req.files['banner'].filename,
-        fotosobre: req.files['fotosobre'].filename,
+        logo: req.files.logo[0].filename,
+        banner: req.files.banner[0].filename,
+        fotosobre: req.files.fotosobre[0].filename,
     });
     res.redirect('/admin/evento/lst');
 }

@@ -5,7 +5,7 @@ const Ministrante = models.Ministrante
 //função que lista todos ítens
 async function lst(req, res) {
     const ministrante = await Ministrante.findAll()
-    res.render("admin/ministrante/lst", {Ministrantes:ministrantes});
+    res.render("admin/ministrante/lst", {Logado:req.user, Ministrantes:ministrantes});
 }
 //função que lista todos ítens de acordo com pesquisa
 async function filtro(req, res) {
@@ -16,11 +16,11 @@ async function filtro(req, res) {
             }
         }
     })
-    res.render("admin/ministrante/lst", {Ministrantes:ministrantes});
+    res.render("admin/ministrante/lst", {Logado:req.user, Ministrantes:ministrantes});
 }
 //função que abre a tela de add
 async function abreadd(req, res) {
-    res.render("admin/ministrante/add");
+    res.render("admin/ministrante/add", {Logado:req.user});
 }
 //função que adiciona
 async function add(req, res) {
@@ -29,13 +29,15 @@ async function add(req, res) {
         email: req.body.email,
         formacao: req.body.formacao,
         fotoperfil: req.files.fotoperfil[0].filename,
-    })
+    }).cath(function(err){
+        console.log(err);
+    });
     res.redirect('/admin/ministrante/lst');
 }
 //função que abre tela de edt
 async function abreedt(req, res) {
     const ministrante = await Ministrante.findByPk(req.params.id);
-    res.render("admin/ministrante/edt", {Ministrante:ministrante});
+    res.render("admin/ministrante/edt", {Logado:req.user, Ministrante:ministrante});
 }
 //função que edita
 async function edt(req, res) {
@@ -44,7 +46,7 @@ async function edt(req, res) {
         nome: req.body.nome,
         email: req.body.email,
         formacao: req.body.formacao,
-        fotoperfil: req.files['fotoperfil'].filename
+        fotoperfil: req.files.filename
     })
     res.redirect('/admin/ministrante/lst')
 }

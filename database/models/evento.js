@@ -11,21 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Patrocinio,{
-        foreignKey: 'eventoId',
-        as: 'patrocinios'
-      })
       this.hasMany(models.Noticia, {
         foreignKey: 'eventoId',
         as: 'noticias'
       })
-      this.hasMany(models.Oficina, {
-        foreignKey: 'eventoId', 
-        as: 'oficinas'
+      this.hasMany(models.Patrocinio, {
+        foreignKey: 'eventoId',
+        as: 'patrocinios'
       })
       this.hasMany(models.Oficina, {
-        foreignKey: 'eventoId', 
-        as: 'palestras'
+        foreignKey: 'eventoId',
+        as: 'oficinas'
       })
     }
   }
@@ -33,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     nome: DataTypes.STRING,
     frase: DataTypes.STRING,
     sobre: DataTypes.STRING,
+    siglaano: DataTypes.STRING,
     local: DataTypes.STRING,
     datainicio: DataTypes.DATE,
     datafim: DataTypes.DATE,

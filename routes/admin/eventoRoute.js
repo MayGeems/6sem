@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../../config/upload.js");
 const eventoController = require("../../controller/admin/eventoController");
 
 //rota para listar todos os eventos

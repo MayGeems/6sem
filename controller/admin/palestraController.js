@@ -5,7 +5,7 @@ const Palestras = models.Palestra;
 //função que lista todos ítens
 async function lst(req, res) {
     const palestras = await Palestra.findAll();
-    res.render("admin/palestra/lst", {Palestras: palestras});
+    res.render("admin/palestra/lst", {Logado:req.user, Palestras: palestras});
 }
 //função que lista todos ítens de acordo com pesquisa
 async function filtro(req, res) {
@@ -16,7 +16,7 @@ async function filtro(req, res) {
             }
         }
     });
-    res.render("admin/palestra/lst", {Palestras: palestras});
+    res.render("admin/palestra/lst", {Logado:req.user, Palestras: palestras});
 }
 //função que abre a tela de add
 async function abreadd(req, res) {
@@ -32,8 +32,14 @@ async function add(req, res) {
         data: req.body.data,
         eventoId: req.body.eventoId
     });
-    const arr = [...[req.body.ministranteId]];
-    arr.forEach(async function(id){
+    let arr;
+    if(Array.isArray(req.body.ministranteId)){
+        arr = req.body.ministranteId;
+    }else{
+        arr = [...[req.body.ministranteId]];
+    }    
+
+    arr.forEach(async function (id) {
         const ministrante = await models.Ministrante.findByPk(id)
         await palestra.addMinistrante(ministrante);
     });
@@ -44,7 +50,7 @@ async function abreedt(req, res) {
     const eventos = await models.Evento.findAll();
     const ministrantes = await models.Ministrantes.findAll();
     const palestra = await Palestra.findByPk(req.params.id, {include: 'ministrantes'});
-    res.render("admin/palestra/edt", {Palestra:palestra, Eventos:eventos, Ministrantes:ministrantes});
+    res.render("admin/palestra/edt", {Logado:req.user, Palestra:palestra, Eventos:eventos, Ministrantes:ministrantes});
 }
 //função que edita
 async function edt(req, res) {
@@ -55,12 +61,17 @@ async function edt(req, res) {
         data: req.body.data,
         eventoId: req.body.eventoId
     })
-    const arr = [...[req.body.ministranteId]];
-    await palestra.removeMinistrantes(palestra.ministrantes);
-    arr.forEach(async function(id){
-        const ministrante = await models.ministrante.findByPk(id)
+    let arr;
+    if(Array.isArray(req.body.ministranteId)){
+        arr = req.body.ministranteId;
+    }else{
+        arr = [...[req.body.ministranteId]];
+    }    
+    await palestra.removeMinistrantes(palestra.ministrantes)
+    arr.forEach(async function (id) {
+        const ministrante = await models.Ministrante.findByPk(id)
         await palestra.addMinistrante(ministrante);
-    })
+    });
     res.redirect('/admin/palestra/lst');
 }
 //função que deleta ítens

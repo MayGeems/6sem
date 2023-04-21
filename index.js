@@ -23,13 +23,13 @@ app.set("view engine", "ejs");
 
 app.use("/", publicRoute);
 app.use("/admin", adminRoute);
-app.use("/admin", eventoRoute);
-app.use("/admin", loginRoute);
-app.use("/admin", ministranteRoute);
-app.use("/admin", noticiaRoute);
-app.use("/admin", oficinaRoute);
-app.use("/admin", palestraRoute);
-app.use("/admin", patrocinioRoute);
+app.use("/evento", eventoRoute);
+app.use("/login", loginRoute);
+app.use("/ministrante", ministranteRoute);
+app.use("/noticia", noticiaRoute);
+app.use("/oficina", oficinaRoute);
+app.use("/palestra", palestraRoute);
+app.use("/patrocinio", patrocinioRoute);
 
 app.listen(porta, () => {
   console.log("Servidor funcionando na porta: " + porta);
